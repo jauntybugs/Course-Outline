@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX 12-Week Program Calendar</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2563eb;
+        }
+        
+        .header h1 {
+            color: #1e40af;
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .header p {
+            color: #64748b;
+            margin: 10px 0 0 0;
+            font-size: 1.1em;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .virtual { background: #3b82f6; }
+        .physical { background: #10b981; }
+        
+        .week {
+            margin-bottom: 25px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .week-header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .week-content {
+            padding: 0;
+        }
+        
+        .class-day {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .class-day:last-child {
+            border-bottom: none;
+        }
+        
+        .class-day.virtual {
+            background: linear-gradient(to right, #dbeafe, #f8fafc);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .class-day.physical {
+            background: linear-gradient(to right, #d1fae5, #f8fafc);
+            border-left: 4px solid #10b981;
+        }
+        
+        .day-info {
+            flex: 1;
+        }
+        
+        .day-date {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.1em;
+        }
+        
+        .day-type {
+            color: #64748b;
+            font-size: 0.9em;
+            margin-top: 2px;
+        }
+        
+        .day-topic {
+            color: #374151;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .download-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .header h1 { font-size: 2em; }
+            .legend { gap: 15px; }
+            .download-btn { position: static; margin-bottom: 20px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn no-print" onclick="downloadPDF()">📄 Download PDF</button>
+    
+    <div class="container">
+        <div class="header">
+            <h1>UI/UX Design Program</h1>
+            <p>12-Week Intensive Course Schedule | 3 Classes Per Week</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color virtual"></div>
+                <span>Wednesday - Virtual Classes</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color physical"></div>
+                <span>Friday & Saturday - Physical Classes</span>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 1: Introduction to UI/UX Design</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Jan 8</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Course Introduction & Design Thinking Fundamentals</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Jan 10</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">User-Centered Design Principles</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Jan 11</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Visual Design Basics & Color Theory</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 2: Fundamentals Deep Dive</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Jan 15</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Typography & Layout Principles</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Jan 17</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">UI Components & Design Systems</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Jan 18</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Accessibility in Design</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 3: Introduction to UX Research</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Jan 22</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Research Methods & Planning</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Jan 24</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">User Interviews & Surveys</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Jan 25</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Persona Development Workshop</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 4: Advanced Research Techniques</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Jan 29</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Usability Testing Fundamentals</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Jan 31</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Analytics & Data Interpretation</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Feb 1</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Journey Mapping & User Flows</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 5: Wireframing Fundamentals</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Feb 5</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Information Architecture</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Feb 7</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Low-Fidelity Wireframing</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Feb 8</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Sketching & Rapid Ideation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 6: Advanced Wireframing</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Feb 12</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">High-Fidelity Wireframes</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Feb 14</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Wireframe Tools & Software</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Feb 15</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Collaborative Wireframing Workshop</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 7: Introduction to Prototyping</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Feb 19</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Prototyping Tools Overview</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Feb 21</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Interactive Prototypes</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Feb 22</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Animation & Micro-interactions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 8: Advanced Prototyping</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Feb 26</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Testing with Prototypes</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Feb 28</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Mobile Prototyping</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Mar 1</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Responsive Design Prototypes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 9: Portfolio Development</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Mar 5</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Portfolio Strategy & Planning</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Mar 7</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Case Study Development</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Mar 8</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Visual Portfolio Design</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 10: Portfolio Refinement</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Mar 12</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Online Portfolio Platforms</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Mar 14</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Portfolio Review & Feedback</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Mar 15</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Personal Branding</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 11: Interview Preparation</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Mar 19</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">UX Interview Process & Questions</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Mar 21</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Design Challenges & Whiteboarding</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Mar 22</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Mock Interviews & Presentation Skills</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="week">
+            <div class="week-header">Week 12: Final Projects & Career Prep</div>
+            <div class="week-content">
+                <div class="class-day virtual">
+                    <div class="day-info">
+                        <div class="day-date">Wednesday, Mar 26</div>
+                        <div class="day-type">Virtual Class</div>
+                        <div class="day-topic">Industry Trends & Networking</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Friday, Mar 28</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Final Project Presentations</div>
+                    </div>
+                </div>
+                <div class="class-day physical">
+                    <div class="day-info">
+                        <div class="day-date">Saturday, Mar 29</div>
+                        <div class="day-type">Physical Class</div>
+                        <div class="day-topic">Graduation & Career Launch</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function downloadPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
